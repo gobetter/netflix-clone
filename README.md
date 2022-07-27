@@ -13,3 +13,10 @@
 ```sh
 $yarn create next-app --example with-tailwindcss netflix-clone
 ```
+
+## Install icons
+
+```sh
+$yarn add react-icons
+$yarn add @heroicons/react
+```
