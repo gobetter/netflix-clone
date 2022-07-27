@@ -20,3 +20,16 @@ $yarn create next-app --example with-tailwindcss netflix-clone
 $yarn add react-icons
 $yarn add @heroicons/react
 ```
+
+## Tailwind text shadow plugin
+
+```sh
+$yarn add tailwindcss-textshadow --dev
+
+```
+
+Add the plugin to the plugins array in your Tailwind configuration file (tailwind.config.js).
+
+```js
+plugins: [require('tailwindcss-textshadow')];
+```
