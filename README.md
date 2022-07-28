@@ -44,7 +44,6 @@ $yarn add tailwind-scrollbar-hide
 Then add the plugin to your tailwind.config.js file:
 
 ```js
-j: w;
 plugins: [
   require('tailwind-scrollbar')
   require('tailwind-scrollbar-hide')
