@@ -33,3 +33,20 @@ Add the plugin to the plugins array in your Tailwind configuration file (tailwin
 ```js
 plugins: [require('tailwindcss-textshadow')];
 ```
+
+## Hide Tailwind scrollbar
+
+```sh
+$yarn add -D tailwind-scrollbar
+$yarn add tailwind-scrollbar-hide
+```
+
+Then add the plugin to your tailwind.config.js file:
+
+```js
+j: w;
+plugins: [
+  require('tailwind-scrollbar')
+  require('tailwind-scrollbar-hide')
+];
+```
