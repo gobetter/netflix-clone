@@ -3,6 +3,8 @@ import Head from 'next/head';
 import Image from 'next/image';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
+
+import useAuth from '../hooks/useAuth';
 interface Inputs {
   email: string;
   password: string;
@@ -10,7 +12,7 @@ interface Inputs {
 
 function Login() {
   const [login, setLogin] = useState(false);
-  // const { signIn, signUp } = useAuth()
+  const { signIn, signUp } = useAuth();
 
   const {
     register,
@@ -21,9 +23,9 @@ function Login() {
 
   const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
     if (login) {
-      // await signIn(email, password)
+      await signIn(email, password);
     } else {
-      // await signUp(email, password)
+      await signUp(email, password);
     }
   };
 
@@ -58,7 +60,9 @@ function Login() {
             <input
               type='email'
               placeholder='Email'
-              className='input'
+              className={`input ${
+                errors.email && 'border-b-2 border-orange-500'
+              }`}
               {...register('email', { required: true })}
             />
 
@@ -73,7 +77,9 @@ function Login() {
             <input
               type='password'
               placeholder='Password'
-              className='input'
+              className={`input ${
+                errors.password && 'border-b-2 border-orange-500'
+              }`}
               {...register('password', { required: true })}
             />
 
@@ -87,15 +93,19 @@ function Login() {
 
         <button
           className='w-full rounded bg-[#e50914] py-3 font-semibold'
-          onClick={() => setLogin(true)}
           type='submit'
+          onClick={() => setLogin(true)}
         >
           Sign In
         </button>
 
         <div className='text-[gray]'>
           New to Netflix?{' '}
-          <button type='submit' className='text-white hover:underline'>
+          <button
+            className='text-white hover:underline'
+            type='submit'
+            onClick={() => setLogin(false)}
+          >
             Sign up now
           </button>
         </div>
