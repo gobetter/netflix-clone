@@ -1,12 +1,15 @@
 import Head from 'next/head';
 import type { GetServerSideProps, NextPage } from 'next';
 
+import { useRecoilValue } from 'recoil';
+
 import Banner from '../components/Banner';
 import Header from '../components/Header';
-import requests from '../utils/requests';
-import { Movie } from '../typings';
 import Row from '../components/Row';
+
+import requests from '../utils/requests';
 import useAuth from '../hooks/useAuth';
+import { Movie } from '../typings';
 
 interface Props {
   netflixOriginals: Movie[];
