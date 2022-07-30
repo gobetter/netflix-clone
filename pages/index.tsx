@@ -15,6 +15,7 @@ import requests from '../utils/requests';
 import useAuth from '../hooks/useAuth';
 import { Movie } from '../typings';
 import payments from '../lib/stripe';
+import useSubscription from '../hooks/useSubscription';
 
 interface Props {
   netflixOriginals: Movie[];
@@ -39,9 +40,9 @@ const Home = ({
   trendingNow,
   products,
 }: Props) => {
-  const { loading } = useAuth();
+  const { loading, user } = useAuth();
   const showModal = useRecoilValue(modalState);
-  const subscription = false;
+  const subscription = useSubscription(user);
 
   if (loading || subscription === null) return null;
 
