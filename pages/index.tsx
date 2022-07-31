@@ -10,12 +10,14 @@ import Row from '../components/Row';
 import Modal from '../components/Modal';
 import Plans from '../components/Plans';
 
-import { modalState } from '../atoms/modalAtom';
-import requests from '../utils/requests';
 import useAuth from '../hooks/useAuth';
+import useList from '../hooks/useList';
+import useSubscription from '../hooks/useSubscription';
+
+import { modalState, movieState } from '../atoms/modalAtom';
+import requests from '../utils/requests';
 import { Movie } from '../typings';
 import payments from '../lib/stripe';
-import useSubscription from '../hooks/useSubscription';
 
 interface Props {
   netflixOriginals: Movie[];
@@ -43,6 +45,8 @@ const Home = ({
   const { loading, user } = useAuth();
   const showModal = useRecoilValue(modalState);
   const subscription = useSubscription(user);
+  const movie = useRecoilValue(movieState);
+  const list = useList(user?.uid);
 
   if (loading || subscription === null) return null;
 
@@ -68,7 +72,9 @@ const Home = ({
           <Row title='Trending Now' movies={trendingNow} />
           <Row title='Top Rated' movies={topRated} />
           <Row title='Action Thrillers' movies={actionMovies} />
+
           {/* My List Component */}
+          {list.length > 0 && <Row title='My List' movies={list} />}
 
           <Row title='Comedies' movies={comedyMovies} />
           <Row title='Scary Movies' movies={horrorMovies} />
